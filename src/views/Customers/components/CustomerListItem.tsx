@@ -33,7 +33,7 @@ const useStyles = makeStyles({
     display: 'block',
     padding: '30px 10px 15px',
     transition: '0.2s',
-    color: '#aaa',
+    color: '#777',
     '&:hover': {
       color: '#ffa726',
       backgroundColor: '#eee'
