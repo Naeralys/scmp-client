@@ -37,32 +37,41 @@ const Customers = (Props: CustomersProps) => {
   }
 
   return (
-    <Card className={styles.root}>
-      <h2 className={styles.headerText}>Customers</h2>
-      <CustomerListHeader />
-      <Divider />
-      <CustomerList
-        customers={customers}
-        handleOnCustomerSelect={handleOnCustomerSelect}
-      />
-      <CustomerDetailsModal
-        customer={selectedCustomer()}
-        show={showModal}
-        onClose={() => setShowModal(false)}
-      />
-    </Card>
+    <section className={styles.root}>
+      <Card className={styles.card}>
+        <h2 className={styles.headerText}>Customers</h2>
+        <CustomerListHeader />
+        <Divider />
+        <CustomerList
+          customers={customers}
+          handleOnCustomerSelect={handleOnCustomerSelect}
+        />
+        <CustomerDetailsModal
+          customer={selectedCustomer()}
+          show={showModal}
+          onClose={() => setShowModal(false)}
+        />
+      </Card>
+    </section>
   )
 }
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme: any) => ({
   root: {
+    padding: 20
+  },
+  card: {
     maxWidth: 700,
     margin: '50px auto 0',
-    padding: 30
+    padding: 30,
+    [theme.breakpoints.down('sm')]: {
+      marginTop: '10px',
+      padding: 20
+    }
   },
   headerText: {
     textAlign: 'left'
   }
-})
+}))
 
 export default Customers
