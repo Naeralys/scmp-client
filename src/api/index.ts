@@ -1,6 +1,6 @@
 import GetAllCustomers from './Customers/getAllCustomers'
 
-const { ENDPOINT = 'http://localhost:3000' } = process.env
+const ENDPOINT = process.env.REACT_APP_API_ENDPOINT
 
 export const getAllCustomers = () =>
   GetAllCustomers(ENDPOINT + '/customer/getCustomers')
