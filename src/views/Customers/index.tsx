@@ -1,5 +1,6 @@
 import { Card, Divider, makeStyles } from '@material-ui/core'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { getAllCustomers } from '../../api/'
 import CustomerDetailsModal from '../../components/CustomerDetailsModal'
 import { Customer } from '../../types/Customer'
 import CustomerList from './components/CustomerList'
@@ -9,22 +10,7 @@ interface CustomersProps {}
 
 const Customers = (Props: CustomersProps) => {
   const styles = useStyles()
-  const [customers, setCustomers] = useState<Customer[]>([
-    {
-      id: '1',
-      firstName: 'Adam',
-      lastName: 'Lind',
-      email: 'adamlind@live.se',
-      phone: '0708500633'
-    },
-    {
-      id: '2',
-      firstName: 'Camilla',
-      lastName: 'Lamsa',
-      email: 'camilla.lamsa@gmail.com',
-      phone: '0761705595'
-    }
-  ])
+  const [customers, setCustomers] = useState<Customer[]>([])
   const [selectedCustomerId, setSelectedCustomerId] = useState<string>('')
   const [showModal, setShowModal] = useState<boolean>(true)
 
@@ -35,6 +21,10 @@ const Customers = (Props: CustomersProps) => {
     setSelectedCustomerId(customerId)
     setShowModal(true)
   }
+
+  useEffect(() => {
+    getAllCustomers().then(customers => setCustomers(customers))
+  }, [])
 
   return (
     <section className={styles.root}>
